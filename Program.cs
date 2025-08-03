@@ -13,33 +13,39 @@ class Program
 
         int opcion = int.Parse(Console.ReadLine());
 
-        switch(opcion)
+        switch (opcion)
         {
             case 1:
-                Sumar();
+                RealizarOperacion(Sumar);
                 break;
             case 2:
-                Console.WriteLine("Función de resta pendiente.");
+                RealizarOperacion(Restar);
                 break;
             case 3:
-                Console.WriteLine("Función de multiplicación pendiente.");
+                RealizarOperacion(Multiplicar);
                 break;
             case 4:
-                Console.WriteLine("Función de división pendiente.");
+                RealizarOperacion(Dividir);
                 break;
             default:
-                Console.WriteLine("Opción no válida.");
+                Console.WriteLine("Opción no válida");
                 break;
         }
     }
 
-    static void Sumar()
+    static void RealizarOperacion(Func<double, double, double> operacion)
     {
         Console.Write("Ingrese el primer número: ");
         double num1 = double.Parse(Console.ReadLine());
         Console.Write("Ingrese el segundo número: ");
         double num2 = double.Parse(Console.ReadLine());
-        double resultado = num1 + num2;
-        Console.WriteLine($"El resultado de la suma es: {resultado}");
+
+        double resultado = operacion(num1, num2);
+        Console.WriteLine("El resultado es: " + resultado);
     }
+
+    static double Sumar(double a, double b) => a + b;
+    static double Restar(double a, double b) => a - b;
+    static double Multiplicar(double a, double b) => a * b;
+    static double Dividir(double a, double b) => a / b;
 }
